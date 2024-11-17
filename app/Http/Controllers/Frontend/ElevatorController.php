@@ -9,7 +9,6 @@ class ElevatorController extends Controller
 {
     public function getOptimalRoute()
     {
-        // Define the floors where passengers are located
         $passengers = [
             'A' => ['start' => 5, 'destination' => 15],
             'B' => ['start' => 12, 'destination' => 8],
@@ -17,17 +16,14 @@ class ElevatorController extends Controller
             'D' => ['start' => 3, 'destination' => 17],
         ];
 
-        // Sort passengers based on their pickup floors (ascending order)
         uasort($passengers, function ($a, $b) {
             return $a['start'] <=> $b['start'];
         });
 
-        // Initialize variables
         $currentFloor = 1;
         $totalTravelTime = 0;
         $stops = [];
 
-        // Start picking up passengers and drop them off in order
         foreach ($passengers as $person => $details) {
             $pickupFloor = $details['start'];
             $destinationFloor = $details['destination'];
@@ -48,7 +44,6 @@ class ElevatorController extends Controller
             $currentFloor = $destinationFloor;
         }
 
-        // Return the results to a Blade view
         return view('index', compact('stops', 'totalTravelTime'));
     }
 }
