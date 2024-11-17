@@ -15,7 +15,7 @@ class TaskService
 
     public function getAllTasks()
     {
-        return $this->taskRepository->paginate(1);
+        return $this->taskRepository->paginate(10);
     }
 
     public function createTask(array $data)
